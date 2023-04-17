@@ -1,0 +1,21 @@
+<mat-toolbar-row>
+  <mat-toolbar color="primary">
+    <button mat-icon-button class="icon" aria-label="Example icon-button with menu icon" (click)="drawer.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>InSharp Assessment - Chandima Ekanayake</span>
+  </mat-toolbar>
+</mat-toolbar-row>
+
+<mat-sidenav-container class="container" [hasBackdrop]="false">
+  <mat-sidenav #drawer class="sidenav mat-primary" mode="side" color="primary" fixedInViewport="true"
+    fixedTopGap="56">
+    <mat-nav-list>
+      <a mat-list-item routerLink="/individuals" class="nav-item">Individuals</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <div class="page-content">
+    <!-- This is where the lazy loaded content would be populated -->
+    <router-outlet></router-outlet>
+  </div>
+</mat-sidenav-container>

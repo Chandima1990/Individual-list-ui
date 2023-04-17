@@ -1,0 +1,9 @@
+<div class="table-header-row">
+  <label header-label for="">Individual List</label>
+  <button mat-raised-button (click)="AddIndividual()" color="primary"> Add New </button>
+</div>
+
+<app-individuals *ngIf="individuals$ | async as individualsData" (pageSizeChangedEmitter)="pageSizeChanged($event)"
+  (pageChangedEmitter)="pageChanged($event)" [individualsData]="individualsData" [page]="individualsData.page"
+  [pageSize]="individualsData.pageSize"
+  [length]="individualsData.total"></app-individuals>

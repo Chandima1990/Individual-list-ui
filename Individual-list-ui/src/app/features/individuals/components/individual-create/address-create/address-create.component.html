@@ -1,0 +1,31 @@
+<label for="">Add New Address</label>
+<form [formGroup]="individualForm">
+  <form [formGroup]="formItem">
+
+    <input matInput type="text" hidden formControlName="id">
+
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Street</mat-label>
+        <input matInput type="text" placeholder="Street" formControlName="street">
+      </mat-form-field>
+
+      <button mat-mini-fab aria-label="Example icon button with a home icon" type="button" (click)="removeAddress()"
+        class="back-fab-button">
+        <mat-icon>cancel</mat-icon>
+      </button>
+
+    </div>
+
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>City</mat-label>
+        <input matInput type="text" placeholder="City" formControlName="city">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Country</mat-label>
+        <input matInput type="text" placeholder="Country" formControlName="country">
+      </mat-form-field>
+    </div>
+  </form>
+</form>
