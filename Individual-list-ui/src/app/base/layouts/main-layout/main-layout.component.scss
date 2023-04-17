@@ -1,0 +1,34 @@
+.page-content {
+  display: flex;
+  justify-content: center;
+  margin: 60px 16px;
+  padding: 24px 0px 0px 0;
+  min-height: calc(100vh - 20px);
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.mat-toolbar.mat-primary.mat-toolbar-single-row {
+  z-index: 99;
+  position: fixed;
+}
+
+.sidenav {
+  padding: 30px 0;
+  height: 100vh;
+  position: fixed;
+  width: 200px;
+}
+
+.mat-toolbar-row,
+.mat-toolbar-single-row {
+  padding: 0 0;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: row;
+
+  border-top: 1px solid #c5cdc2;
+  border-bottom: 1px solid #c5cdc2;
+}
