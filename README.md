@@ -14,4 +14,5 @@ Run `npm run start:dev` for a dev server. Navigate to `http://localhost:4200/`. 
 * Detail pages can be redirected through a router resolver so the data would be gauranteed to be loaded when the user navigated to the page. 
 * Can use language files to get labels, messages and other display texts.
 * Can use a general config file to store hot swappable values so application behaviour can be changed without a deployment. 
+* Unit tests can be written.
 
