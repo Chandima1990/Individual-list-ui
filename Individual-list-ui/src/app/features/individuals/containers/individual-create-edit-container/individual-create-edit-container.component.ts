@@ -84,10 +84,11 @@ export class IndividualCreateContainerComponent implements OnDestroy {
 
     if (!addresses) {
       return this.formBuilder.array([this.formBuilder.group({
-        id: [''],
+        id: [],
         city: [''],
         country: [''],
-        street: ['']
+        street: [''],
+        individualId: []
       })]);
     }
 
@@ -97,7 +98,8 @@ export class IndividualCreateContainerComponent implements OnDestroy {
         id: [address.id],
         city: [address.city],
         country: [address.country],
-        street: [address.street]
+        street: [address.street],
+        individualId: [address.individualId],
 
       })
     }));
@@ -107,10 +109,10 @@ export class IndividualCreateContainerComponent implements OnDestroy {
   addNewAddress() {
     (this.individualForm.get('addresses') as FormArray)
       .push(this.formBuilder.group({
-        id: [''],
         city: [''],
         country: [''],
-        street: ['']
+        street: [''],
+        individualId: [this.individualId],
       }));
   }
 
