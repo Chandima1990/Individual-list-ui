@@ -3,6 +3,8 @@ import { AbstractControl, FormArray, FormBuilder, FormGroup, ValidationErrors, V
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subject, takeUntil } from 'rxjs';
+import { MessageService } from 'src/app/shared/services';
+import { markFormAsDirty } from 'src/app/shared/utils';
 import { DeleteConfirmComponent } from '../../components';
 import { Address, Individual } from '../../models';
 import { IndividualService } from '../../services';
@@ -25,7 +27,8 @@ export class IndividualCreateContainerComponent implements OnDestroy {
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private individualService: IndividualService,
-    public dialog: MatDialog
+    private dialog: MatDialog,
+    private messageService: MessageService
   ) { }
 
   ngOnInit(): void {
@@ -38,13 +41,16 @@ export class IndividualCreateContainerComponent implements OnDestroy {
 
     //update case
     if (this.individualId) {
+      // get the individual from the service by id
       this.individual$ = this.individualService.getIndividualById(this.individualId);
 
       this.individual$
         .pipe(takeUntil(this.unsubscribeAll))
         .subscribe(individual => {
+
+          // create the form with the individual data
           this.individualForm = this.createForm(individual);
-          this.individualForm.patchValue(individual);
+          // this.individualForm.patchValue(individual);
         });
 
     } else {
@@ -110,35 +116,68 @@ export class IndividualCreateContainerComponent implements OnDestroy {
   onFormSubmit() {
 
     if (this.individualForm.invalid) {
-      this.individualForm.markAsTouched();
+      markFormAsDirty(this.individualForm);
       return;
     }
 
     if (this.individualId) {
       this.individualService
-        .updateIndividual(this.individualForm.getRawValue() as Individual);
+        .updateIndividual(this.individualForm.getRawValue() as Individual)
+        .pipe(takeUntil(this.unsubscribeAll))
+        .subscribe((res) => {
+          if (res) {
+            this.messageService
+              .showSuccess('The record updated successfully')
+            this.goBack();
+          } else {
+            this.messageService
+              .showError('Error updating the record, please try again')
+          }
+        });;
       return;
     }
 
     this.individualService
       .createIndividual(this.individualForm.getRawValue() as Individual)
+      .pipe(takeUntil(this.unsubscribeAll))
+      .subscribe((res) => {
+        if (res) {
+          this.messageService
+            .showSuccess('The record created successfully')
+          this.goBack();
+        } else {
+          this.messageService
+            .showError('Error creating the record, please try again')
+        }
+      });
     return;
   }
 
+  /**
+   * Open a dialog box to confirm delete
+   */
   deleteIndividual() {
-    const dialogBox = this.dialog.open(DeleteConfirmComponent, {
-      width: '250px'
-    });
+    const dialogBox = this.dialog.open(DeleteConfirmComponent);
 
     dialogBox.afterClosed().pipe(takeUntil(this.unsubscribeAll))
       .subscribe(result => {
         if (result) {
-          this.individualService.deleteIndividual(this.individualId);
-          this.goBack();
+          this.individualService
+            .deleteIndividual(this.individualId)
+            .pipe(takeUntil(this.unsubscribeAll))
+            .subscribe((res) => {
+              if (res) {
+                this.messageService
+                  .showSuccess('The record deleted successfully')
+                this.goBack();
+              } else {
+                this.messageService
+                  .showError('Error deleting the record, please try again')
+              }
+            });
         }
       });
   }
-
 
   goBack() {
     this.router.navigate(['individuals']);

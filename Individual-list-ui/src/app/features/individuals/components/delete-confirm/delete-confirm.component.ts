@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-delete-confirm',
   templateUrl: './delete-confirm.component.html',
-  styleUrls: ['./delete-confirm.component.scss']
+  styleUrls: ['./delete-confirm.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DeleteConfirmComponent {
 

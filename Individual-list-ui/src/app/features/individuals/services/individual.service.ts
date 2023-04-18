@@ -11,6 +11,11 @@ const baseUrl = environment.baseApiUrl;
 @Injectable({
   providedIn: 'root'
 })
+
+/**
+ * Individual service for CRUD operations
+ * @export class IndividualService
+ */
 export class IndividualService {
   individuals$!: Observable<PagedData<Individual>>;
   individual$!: Observable<Individual>;
@@ -68,7 +73,7 @@ export class IndividualService {
    * @param individualId individual id to delete
    */
   deleteIndividual(individualId: number) {
-    return this.as.delete(`${baseUrl}/Individual/Delete`, { id: individualId }) as Observable<boolean>;
+    return this.as.delete(`${baseUrl}/Individual/Delete/${individualId}`, {}) as Observable<boolean>;
   }
 
 }
