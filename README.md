@@ -8,7 +8,7 @@ Run `npm run start:dev` for a dev server. Navigate to `http://localhost:4200/`. 
 
 # Room for improvements
 
-## As i am submitting the assessment somewhat two days early, I see some things can be still improved in the application with some work here and there.
+## As I am submitting the assessment somewhat two days early, I see some things can be still improved in the application with some work here and there.
 
 * Forms can be protected with some canDeactivate and FormGuards so the unsaved data would not be missing.
 * Detail pages can be redirected through a router resolver so the data would be gauranteed to be loaded when the user navigated to the page. 
