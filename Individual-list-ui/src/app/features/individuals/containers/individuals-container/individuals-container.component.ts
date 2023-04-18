@@ -18,19 +18,23 @@ export class IndividualsContainerComponent {
     private router: Router) { }
 
   addIndividual() {
-    this.router.navigate(['individuals/create']);
+    this.router
+      .navigate(['individuals/create']);
   }
 
   updateIndividual(id: number) {
-    this.router.navigate([`individuals/edit/${id}`]);
+    this.router
+      .navigate([`individuals/update/${id}`]);
   }
 
-  pageChanged(event: any) {
-    this.individuals$ = this.individualService.getAllIndividuals(event, this.pageSize);
+  pageChanged(page: any) {
+    this.individuals$ = this.individualService
+      .getAllIndividuals(page, this.pageSize);
   }
 
-  pageSizeChanged(event: any) {
-    this.individuals$ = this.individualService.getAllIndividuals(this.page, event);
+  pageSizeChanged(pageSize: any) {
+    this.individuals$ = this.individualService
+      .getAllIndividuals(this.page, pageSize);
   }
 }
 

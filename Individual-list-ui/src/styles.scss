@@ -33,7 +33,8 @@ table {
   }
 }
 
-.mdc-data-table__row {
+.mdc-data-table__cell a {
+  text-decoration: underline;
   cursor: pointer;
 }
 

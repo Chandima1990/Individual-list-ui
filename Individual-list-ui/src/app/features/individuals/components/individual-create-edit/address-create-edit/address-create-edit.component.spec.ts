@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddressCreateComponent } from './address-create.component';
+import { AddressCreateComponent } from './address-create-edit.component';
 
 describe('AddressCreateComponent', () => {
   let component: AddressCreateComponent;

@@ -1,5 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
-import { AbstractControl, FormArray, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subject, takeUntil } from 'rxjs';
@@ -8,11 +8,12 @@ import { markFormAsDirty } from 'src/app/shared/utils';
 import { DeleteConfirmComponent } from '../../components';
 import { Address, Individual } from '../../models';
 import { IndividualService } from '../../services';
+import { atLeastOneAddressValidator, phoneNumberValidator } from '../../validators';
 
 @Component({
-  selector: 'app-individual-create-container',
-  templateUrl: './individual-create-container.component.html',
-  styleUrls: ['./individual-create-container.component.scss']
+  selector: 'app-individual-create-edit-container',
+  templateUrl: './individual-create-edit-container.component.html',
+  styleUrls: ['./individual-create-edit-container.component.scss']
 })
 export class IndividualCreateContainerComponent implements OnDestroy {
 
@@ -67,14 +68,14 @@ export class IndividualCreateContainerComponent implements OnDestroy {
       firstName: [individual.firstName, [Validators.required]],
       lastName: [individual.lastName],
       ageInYears: [individual.ageInYears],
-      phoneNumber: [individual.phoneNumber, [Validators.required]],
+      phoneNumber: [individual.phoneNumber, [Validators.required, phoneNumberValidator]],
       addresses: this.addressFormArray(individual.addresses),
     }, {
       /**
        * This is a custom validator that checks if at least one address is provided
        * Assumed that it is needed
        */
-      validators: atLeastOneAddress
+      validators: atLeastOneAddressValidator
     });
 
   }
@@ -192,16 +193,3 @@ export class IndividualCreateContainerComponent implements OnDestroy {
     this.unsubscribeAll.complete();
   }
 }
-
-/** At least 1 address need to be added */
-export const atLeastOneAddress: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
-  const addresses = control.get('addresses') as FormArray;
-
-  const invalid = addresses?.controls?.length === 0;
-
-  if (invalid) {
-    addresses.setErrors({ required: true })
-  }
-
-  return invalid ? { required: true } : null;
-};
