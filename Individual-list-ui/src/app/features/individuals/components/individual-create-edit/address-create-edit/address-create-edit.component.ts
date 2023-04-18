@@ -2,9 +2,9 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormArray, FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'app-address-create',
-  templateUrl: './address-create.component.html',
-  styleUrls: ['./address-create.component.scss'],
+  selector: 'app-address-create-edit',
+  templateUrl: './address-create-edit.component.html',
+  styleUrls: ['./address-create-edit.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AddressCreateComponent {
@@ -17,4 +17,7 @@ export class AddressCreateComponent {
       .removeAt(this.place);
   }
 
+  get addressNumber() {
+    return parseInt(this.place.toString()) + 1
+  }
 }

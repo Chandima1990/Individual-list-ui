@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddressCreateComponent } from './address-create.component';
+import { DeleteConfirmComponent } from './delete-confirm.component';
 
-describe('AddressCreateComponent', () => {
-  let component: AddressCreateComponent;
-  let fixture: ComponentFixture<AddressCreateComponent>;
+describe('DeleteConfirmComponent', () => {
+  let component: DeleteConfirmComponent;
+  let fixture: ComponentFixture<DeleteConfirmComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddressCreateComponent ]
+      declarations: [ DeleteConfirmComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(AddressCreateComponent);
+    fixture = TestBed.createComponent(DeleteConfirmComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,0 +1,28 @@
+<mat-card>
+  <mat-card-header>
+    <div class="table-header-row">
+      <button mat-mini-fab aria-label="Example icon button with a home icon" (click)="goBack()" color="primary"
+        class="back-fab-button" matTooltip="Go back to Individuals">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+
+      <mat-card-title>{{ individualId ? 'Update Individual' : 'Add New Individual'}}</mat-card-title>
+    </div>
+  </mat-card-header>
+
+  <mat-card-content>
+    <app-individual-create-edit [individualForm]="individualForm" (addNewAddressEmitter)="addNewAddress()"
+      (formSubmitEmitter)="onFormSubmit()" [create]="!individualId" updateIndividual></app-individual-create-edit>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <form *ngIf="individualForm" [formGroup]="individualForm" (ngSubmit)="onFormSubmit()">
+      <div mat-dialog-actions class="form-action">
+        <button mat-raised-button type="button" (click)="goBack()">Cancel</button>
+        <button mat-raised-button type="button" color="warn" *ngIf="individualId"
+          (click)="deleteIndividual()">Delete</button>
+        <button mat-raised-button color="primary" type="submit">{{ individualId ? 'Update': 'Save' }}</button>
+      </div>
+    </form>
+  </mat-card-actions>
+</mat-card>

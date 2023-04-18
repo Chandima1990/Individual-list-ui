@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { IndividualCreateComponent } from './individual-create.component';
+import { IndividualCreateComponent } from './individual-create-edit.component';
 
 describe('IndividualCreateComponent', () => {
   let component: IndividualCreateComponent;

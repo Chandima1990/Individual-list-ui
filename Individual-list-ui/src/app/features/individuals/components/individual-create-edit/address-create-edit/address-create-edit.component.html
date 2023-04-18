@@ -1,8 +1,10 @@
-<label for="">Add New Address</label>
+<label for="">{{ 'Address ' + addressNumber}}</label>
+<mat-divider></mat-divider>
 <form [formGroup]="individualForm">
   <form [formGroup]="formItem">
 
     <input matInput type="text" hidden formControlName="id">
+    <input matInput type="text" hidden formControlName="individualId">
 
     <div class="row">
       <mat-form-field appearance="outline">
@@ -11,7 +13,7 @@
       </mat-form-field>
 
       <button mat-mini-fab aria-label="Example icon button with a home icon" type="button" (click)="removeAddress()"
-        class="back-fab-button">
+        class="back-fab-button" matTooltip="Remove address" color="primary">
         <mat-icon>cancel</mat-icon>
       </button>
 

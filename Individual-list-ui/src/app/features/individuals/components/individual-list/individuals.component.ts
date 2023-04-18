@@ -15,13 +15,14 @@ import { Individual } from '../../models/individual.models';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class IndividualsComponent implements OnInit  {
+export class IndividualsComponent implements OnInit {
 
   @Input() individualsData!: PagedData<Individual>;
   @Input() pageSize: number = 10;
   @Input() page: number = 1;
   @Input() length: number = 0;
 
+  @Output() updateIndividualEmitter: EventEmitter<number> = new EventEmitter();
   @Output() pageChangedEmitter: EventEmitter<number> = new EventEmitter();
   @Output() pageSizeChangedEmitter: EventEmitter<number> = new EventEmitter();
 
@@ -29,14 +30,16 @@ export class IndividualsComponent implements OnInit  {
   dataSource = new MatTableDataSource<Individual>();
 
   ngOnInit(): void {
-
     this.dataSource.data = this.individualsData.data;
-
   }
 
   pageChanged(event: any) {
     this.pageChangedEmitter.emit(event.pageIndex + 1);
     this.pageSizeChangedEmitter.emit(event.pageSize);
+  }
+
+  updateIndividual(id: number) {
+    this.updateIndividualEmitter.emit(id);
   }
 
 }

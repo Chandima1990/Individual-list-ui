@@ -3,9 +3,11 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -13,9 +15,12 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
+import { MatTooltipModule } from '@angular/material/tooltip';
+
 import { RouterModule, Routes } from '@angular/router';
 import {
   AddressCreateComponent,
+  DeleteConfirmComponent,
   IndividualCreateComponent, IndividualsComponent
 } from './components';
 import {
@@ -27,7 +32,8 @@ import { AddressListStringPipe } from './pipes';
 //#region const data
 const COMPONENTS = [IndividualCreateComponent,
   IndividualsComponent,
-  AddressCreateComponent];
+  AddressCreateComponent,
+  DeleteConfirmComponent];
 
 const CONTAINERS = [IndividualsContainerComponent,
   IndividualCreateContainerComponent];
@@ -37,12 +43,18 @@ const PIPES = [AddressListStringPipe];
 const routes: Routes = [
   {
     path: '',
-    component: IndividualsContainerComponent
+    component: IndividualsContainerComponent,
+    title : 'Individuals - InSharp Assessment'
   },
   {
     path: "create",
     component: IndividualCreateContainerComponent,
-    // canDeactivate: [FormDirtyGuard],
+    title : 'Create Individuals - InSharp Assessment'
+  },
+  {
+    path: "update/:id",
+    component: IndividualCreateContainerComponent,
+    title : 'Update Individuals - InSharp Assessment'
   }
 ];
 //#endregion
@@ -70,9 +82,12 @@ const routes: Routes = [
     MatIconModule,
     MatSelectModule,
     MatDialogModule,
-    MatInputModule
+    MatInputModule,
+    MatTooltipModule,
+    MatCardModule,
+    MatDividerModule,
 
-  ]
+  ],
 })
 
 export class IndividualModule { }

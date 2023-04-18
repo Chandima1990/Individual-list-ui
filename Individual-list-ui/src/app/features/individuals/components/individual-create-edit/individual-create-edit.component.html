@@ -1,8 +1,8 @@
-<form [formGroup]="individualForm" (ngSubmit)="onFormSubmit()">
+<form *ngIf="individualForm" [formGroup]="individualForm" (ngSubmit)="onFormSubmit()">
 
   <input matInput type="text" hidden formControlName="id">
 
-  <div mat-dialog-content class="content">
+  <div class="content">
 
     <div class="row">
       <mat-form-field appearance="outline">
@@ -22,7 +22,7 @@
     <div class="row">
       <mat-form-field appearance="outline">
         <mat-label>Age In Years</mat-label>
-        <input matInput type="number" placeholder="Age in years" formControlName="ageInYears">
+        <input matInput type="number" placeholder="Age in years" min="0" formControlName="ageInYears">
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Phone Number</mat-label>
@@ -30,26 +30,28 @@
         <mat-error *ngIf="phoneNumberControl?.hasError('required')">
           Please enter Phone Number
         </mat-error>
+        <mat-error *ngIf="phoneNumberControl?.hasError('phoneNumberNotValid')">
+          Phone Number is not valid (Must contain 10 digits)
+        </mat-error>
       </mat-form-field>
     </div>
 
     <div class="address-section">
 
       <div class="column" *ngFor="let item of addressesFormArray; let i = index">
-        <app-address-create [formItem]="item" [individualForm]="individualForm" [place]="i"></app-address-create>
+        <app-address-create-edit [formItem]="item" [individualForm]="individualForm"
+          [place]="i"></app-address-create-edit>
       </div>
 
       <button mat-mini-fab aria-label="Example icon button with a home icon" type="button" (click)="addNewAddress()"
-        class="back-fab-button">
+        matTooltip="Add new address" class="back-fab-button" color="primary">
         <mat-icon>add</mat-icon>
       </button>
 
     </div>
+    <mat-error *ngIf="addressControl?.hasError('required')">
+      Please add at least one address
+    </mat-error>
 
-  </div>
-
-  <div mat-dialog-actions class="form-action">
-    <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
-    <button mat-raised-button color="primary" type="submit">{{ create ? 'Save': 'Update' }}</button>
   </div>
 </form>
