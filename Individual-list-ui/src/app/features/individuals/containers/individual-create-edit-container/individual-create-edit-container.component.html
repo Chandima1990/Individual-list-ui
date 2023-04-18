@@ -11,8 +11,8 @@
   </mat-card-header>
 
   <mat-card-content>
-    <app-individual-create [individualForm]="individualForm" (addNewAddressEmitter)="addNewAddress()"
-      (formSubmitEmitter)="onFormSubmit()" [create]="!individualId" updateIndividual></app-individual-create>
+    <app-individual-create-edit [individualForm]="individualForm" (addNewAddressEmitter)="addNewAddress()"
+      (formSubmitEmitter)="onFormSubmit()" [create]="!individualId" updateIndividual></app-individual-create-edit>
   </mat-card-content>
 
   <mat-card-actions>

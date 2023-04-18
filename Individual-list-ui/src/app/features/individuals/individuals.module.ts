@@ -43,17 +43,18 @@ const PIPES = [AddressListStringPipe];
 const routes: Routes = [
   {
     path: '',
-    component: IndividualsContainerComponent
+    component: IndividualsContainerComponent,
+    title : 'Individuals - InSharp Assessment'
   },
   {
     path: "create",
     component: IndividualCreateContainerComponent,
-    // canDeactivate: [FormDirtyGuard],
+    title : 'Create Individuals - InSharp Assessment'
   },
   {
-    path: "edit/:id",
+    path: "update/:id",
     component: IndividualCreateContainerComponent,
-    // canDeactivate: [FormDirtyGuard],
+    title : 'Update Individuals - InSharp Assessment'
   }
 ];
 //#endregion

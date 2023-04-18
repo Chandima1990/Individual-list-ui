@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { IndividualCreateContainerComponent } from './individual-create-container.component';
+import { IndividualCreateContainerComponent } from './individual-create-edit-container.component';
 
 describe('IndividualCreateContainerComponent', () => {
   let component: IndividualCreateContainerComponent;

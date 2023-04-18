@@ -22,7 +22,7 @@
     <div class="row">
       <mat-form-field appearance="outline">
         <mat-label>Age In Years</mat-label>
-        <input matInput type="number" placeholder="Age in years" formControlName="ageInYears">
+        <input matInput type="number" placeholder="Age in years" min="0" formControlName="ageInYears">
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Phone Number</mat-label>
@@ -30,13 +30,17 @@
         <mat-error *ngIf="phoneNumberControl?.hasError('required')">
           Please enter Phone Number
         </mat-error>
+        <mat-error *ngIf="phoneNumberControl?.hasError('phoneNumberNotValid')">
+          Phone Number is not valid (Must contain 10 digits)
+        </mat-error>
       </mat-form-field>
     </div>
 
     <div class="address-section">
 
       <div class="column" *ngFor="let item of addressesFormArray; let i = index">
-        <app-address-create [formItem]="item" [individualForm]="individualForm" [place]="i"></app-address-create>
+        <app-address-create-edit [formItem]="item" [individualForm]="individualForm"
+          [place]="i"></app-address-create-edit>
       </div>
 
       <button mat-mini-fab aria-label="Example icon button with a home icon" type="button" (click)="addNewAddress()"

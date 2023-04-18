@@ -8,9 +8,9 @@ import {
 import { FormArray, FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'app-individual-create',
-  templateUrl: './individual-create.component.html',
-  styleUrls: ['./individual-create.component.scss'],
+  selector: 'app-individual-create-edit',
+  templateUrl: './individual-create-edit.component.html',
+  styleUrls: ['./individual-create-edit.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class IndividualCreateComponent {
