@@ -16,3 +16,5 @@ Run `npm run start:dev` for a dev server. Navigate to `http://localhost:4200/`. 
 * Can use a general config file to store hot swappable values so application behaviour can be changed without a deployment. 
 * Unit tests can be written.
 
+
+NOTE: Mistakenly pushed a commit with my company email. Please ignore the 'chandimaei' contributor.
