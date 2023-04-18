@@ -3,6 +3,6 @@
   Would you like to delete this record?
 </div>
 <div mat-dialog-actions>
-  <button mat-raised-button mat-dialog-close>Cancel</button>
-  <button mat-raised-button (click)="confirmDelete()" cdkFocusInitial color="warn">Delete</button>
+  <button mat-raised-button (click)="dialogRef.close()">Cancel</button>
+  <button mat-raised-button (click)="confirmDelete()" color="warn">Delete</button>
 </div>

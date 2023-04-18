@@ -13,11 +13,20 @@ body {
 
 // custom global styles
 
+.mat-drawer-content.mat-sidenav-content {
+  background-color: #edede4;
+}
+
+table {
+  width: 100%;
+}
+
 .table-header-row {
   display: flex;
   flex-direction: row;
   align-items: center;
   margin-bottom: 30px;
+  min-width: 1000px;
 
   &--apart-items {
     justify-content: space-between;
@@ -65,4 +74,12 @@ label[header-label] {
     max-height: 100vh;
     overflow: visible;
   }
+}
+
+.mat-mdc-dialog-container.mdc-dialog.cdk-dialog-container.mdc-dialog--open {
+  max-height: 25vh !important;
+}
+
+.mat-divider.mat-divider-horizontal {
+  margin-bottom: 10px;
 }

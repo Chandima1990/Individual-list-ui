@@ -7,6 +7,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -19,6 +20,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterModule, Routes } from '@angular/router';
 import {
   AddressCreateComponent,
+  DeleteConfirmComponent,
   IndividualCreateComponent, IndividualsComponent
 } from './components';
 import {
@@ -26,12 +28,12 @@ import {
   IndividualsContainerComponent
 } from './containers';
 import { AddressListStringPipe } from './pipes';
-import { DeleteConfirmComponent } from './components/delete-confirm/delete-confirm.component';
 
 //#region const data
 const COMPONENTS = [IndividualCreateComponent,
   IndividualsComponent,
-  AddressCreateComponent];
+  AddressCreateComponent,
+  DeleteConfirmComponent];
 
 const CONTAINERS = [IndividualsContainerComponent,
   IndividualCreateContainerComponent];
@@ -60,8 +62,7 @@ const routes: Routes = [
   declarations: [
     COMPONENTS,
     CONTAINERS,
-    PIPES,
-    DeleteConfirmComponent
+    PIPES
   ],
   imports: [
     CommonModule,
@@ -82,9 +83,10 @@ const routes: Routes = [
     MatDialogModule,
     MatInputModule,
     MatTooltipModule,
-    MatCardModule
+    MatCardModule,
+    MatDividerModule,
 
-  ]
+  ],
 })
 
 export class IndividualModule { }
