@@ -1,4 +1,4 @@
-<form [formGroup]="individualForm" (ngSubmit)="onFormSubmit()">
+<form *ngIf="individualForm" [formGroup]="individualForm" (ngSubmit)="onFormSubmit()">
 
   <input matInput type="text" hidden formControlName="id">
 
@@ -40,16 +40,14 @@
       </div>
 
       <button mat-mini-fab aria-label="Example icon button with a home icon" type="button" (click)="addNewAddress()"
-        class="back-fab-button">
+        matTooltip="Add new address" class="back-fab-button" color="primary">
         <mat-icon>add</mat-icon>
       </button>
 
     </div>
+    <mat-error *ngIf="addressControl?.hasError('required')">
+      Please add at least one address
+    </mat-error>
 
-  </div>
-
-  <div mat-dialog-actions class="form-action">
-    <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
-    <button mat-raised-button color="primary" type="submit">{{ create ? 'Save': 'Update' }}</button>
   </div>
 </form>

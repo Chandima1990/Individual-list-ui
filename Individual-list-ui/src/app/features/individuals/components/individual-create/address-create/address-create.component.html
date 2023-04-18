@@ -1,4 +1,4 @@
-<label for="">Add New Address</label>
+<label for="">{{ 'Address ' + addressNumber}}</label>
 <form [formGroup]="individualForm">
   <form [formGroup]="formItem">
 
@@ -11,7 +11,7 @@
       </mat-form-field>
 
       <button mat-mini-fab aria-label="Example icon button with a home icon" type="button" (click)="removeAddress()"
-        class="back-fab-button">
+        class="back-fab-button" matTooltip="Remove address" color="primary">
         <mat-icon>cancel</mat-icon>
       </button>
 

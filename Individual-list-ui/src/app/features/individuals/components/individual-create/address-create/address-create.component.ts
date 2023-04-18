@@ -17,4 +17,7 @@ export class AddressCreateComponent {
       .removeAt(this.place);
   }
 
+  get addressNumber() {
+    return parseInt(this.place.toString()) + 1
+  }
 }
