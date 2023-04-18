@@ -16,10 +16,16 @@ body {
 .table-header-row {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
-  min-width: 368px;
+  margin-bottom: 30px;
+
+  &--apart-items {
+    justify-content: space-between;
+  }
+}
+
+.mdc-data-table__row {
+  cursor: pointer;
 }
 
 label[header-label] {
@@ -49,7 +55,14 @@ label[header-label] {
     flex: 1;
   }
 
-  button:first-child {
+  button:first-child,
+  button:nth-child(2) {
     margin-right: 10px;
+  }
+
+  .mat-mdc-dialog-content.mdc-dialog__content.content {
+    min-height: calc(100vh - 200px);
+    max-height: 100vh;
+    overflow: visible;
   }
 }

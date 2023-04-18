@@ -1,10 +1,28 @@
-<div class="table-header-row">
-  <div>
-    <button mat-mini-fab aria-label="Example icon button with a home icon" (click)="goBack()" class="back-fab-button">
-      <mat-icon>arrow_back</mat-icon>
-    </button>
-    <label header-label for="">Add New Individual</label>
-  </div>
-</div>
+<mat-card>
+  <mat-card-header>
+    <div class="table-header-row">
+      <button mat-mini-fab aria-label="Example icon button with a home icon" (click)="goBack()" color="primary"
+        class="back-fab-button" matTooltip="Go back to Individuals">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
 
-<app-individual-create></app-individual-create>
+      <mat-card-title>{{ individualId ? 'Update Individual' : 'Add New Individual'}}</mat-card-title>
+    </div>
+  </mat-card-header>
+  <mat-card-content>
+
+    <app-individual-create [individualForm]="individualForm" (addNewAddressEmitter)="addNewAddress()"
+      (formSubmitEmitter)="onFormSubmit()" [create]="!individualId" updateIndividual></app-individual-create>
+
+  </mat-card-content>
+  <mat-card-actions>
+    <form *ngIf="individualForm" [formGroup]="individualForm" (ngSubmit)="onFormSubmit()">
+      <div mat-dialog-actions class="form-action">
+        <button mat-raised-button type="button" [mat-dialog-close]="false" (click)="goBack()">Cancel</button>
+        <button mat-raised-button type="button" color="warn" [mat-dialog-close]="false" *ngIf="individualId"
+          (click)="deleteIndividual()">Delete</button>
+        <button mat-raised-button color="primary" type="submit">{{ individualId ? 'Update': 'Save' }}</button>
+      </div>
+    </form>
+  </mat-card-actions>
+</mat-card>

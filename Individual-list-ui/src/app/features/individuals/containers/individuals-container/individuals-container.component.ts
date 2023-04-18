@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { IndividualService } from '../../services';
 
@@ -7,7 +7,7 @@ import { IndividualService } from '../../services';
   templateUrl: './individuals-container.component.html',
   styleUrls: ['./individuals-container.component.scss']
 })
-export class IndividualsContainerComponent implements OnInit {
+export class IndividualsContainerComponent {
 
   pageSize: number = 10;
   page: number = 1;
@@ -17,16 +17,12 @@ export class IndividualsContainerComponent implements OnInit {
   constructor(private individualService: IndividualService,
     private router: Router) { }
 
-  ngOnInit(): void {
-    this.individualService.getAllIndividuals(this.page, this.pageSize)
-  }
-
-  AddIndividual() {
+  addIndividual() {
     this.router.navigate(['individuals/create']);
   }
 
-  UpdateIndividual() {
-    this.router.navigate(['individuals/edit']);
+  updateIndividual(id: number) {
+    this.router.navigate([`individuals/edit/${id}`]);
   }
 
   pageChanged(event: any) {
